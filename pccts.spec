@@ -10,7 +10,7 @@ Group(fr):	Development/Outils
 Group(pl):	Programowanie/Narzêdzia
 Source0:	http://www.polhode.com/%{name}133mr.zip
 URL:		http://www.polhode.com/pccts.html
-BuildPrereq:	unzip
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

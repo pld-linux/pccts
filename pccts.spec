@@ -55,7 +55,7 @@ um conjunto maior de problemas de tradução.
 %build
 mv -f support/genmk/genmk.c support/genmk/genmk.c.org
 sed -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c.org > support/genmk/genmk.c
-%{__make} CC="%{__cc}" COPT="%{rpmcflags}"
+%{__make} CC="%{__cc}" COPT="%{rpmcflags} -DPCCTS_USE_STDARG"
 
 %install
 rm -rf $RPM_BUILD_ROOT

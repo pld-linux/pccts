@@ -5,9 +5,6 @@ Version:	1.33MR22
 Release:	7
 License:	Public Domain
 Group:		Development/Tools
-Group(de):	Entwicklung/Werkzeuge
-Group(fr):	Development/Outils
-Group(pl):	Programowanie/NarzЙdzia
 Source0:	http://www.polhode.com/%{name}133mr.zip
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
@@ -24,13 +21,6 @@ tworzenia kompilatorСw.
 Summary:	Headers for pccts
 Summary(pl):	Pliki nagЁСwkowe dla pccts
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel

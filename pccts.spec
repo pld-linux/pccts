@@ -37,14 +37,14 @@ unzip -qo %{SOURCE0}
 %setup -q -D -T -n %{name}
 
 %build
-CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"; export CFLAGS
+CFLAGS="%{rpmcflags}"; export CFLAGS
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir}/%{name},%{_mandir}/man1}
 
-rm bin/empty.txt
+rm -f bin/empty.txt
 
 install bin/* $RPM_BUILD_ROOT%{_bindir}
 install h/* $RPM_BUILD_ROOT%{_includedir}/%{name}

@@ -7,8 +7,11 @@ Release:	5
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
+# Source0-md5:	fd70972b0a6aa2d3cf8b5c66d26d229d
 Source1:	http://www.polhode.com/pcctsbk2.pdf
+# Source1-md5:	ad0ce95ab5102d0ac89b1980fb5d2788
 Source2:	http://www.antlr.org/1.33/tutorial.zip
+# Source2-md5:	223c7b096d22c44fd1fbbbd84b392f01
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
 Obsoletes:	pccts-devel

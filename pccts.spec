@@ -1,10 +1,12 @@
 Summary:	The Purdue Compiler-Construction Tools Set
 Name:		pccts
 Version:	1.33MR22
-Release:	5
-Group:		Utilities
-Group(pl):	Narzêdzia
-Copyright:	Public Domain
+Release:	6
+License:	Public Domain
+Group:		Development/Tools
+Group(de):	Entwicklung/Werkzeuge
+Group(fr):	Development/Outils
+Group(pl):	Programowanie/Narzêdzia
 Source0:	http://www.polhode.com/%{name}133mr.zip
 URL:		http://www.polhode.com/pccts.html
 BuildPrereq:	unzip
@@ -13,13 +15,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 The Purdue Compiler-Construction Tools Set
 
-#%description -l pl
-
 %package devel
 Summary:	Headers for pccts
 Summary(pl):	Pliki nag³ówkowe dla pccts
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -35,7 +37,7 @@ unzip -qo %{SOURCE0}
 %setup -q -D -T -n %{name}
 
 %build
-CFLAGS=$RPM_OPT_FLAGS; export CFLAGS
+CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"; export CFLAGS
 %{__make}
 
 %install

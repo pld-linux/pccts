@@ -34,13 +34,11 @@ unzip -qo %{SOURCE0}
 %setup -q -D -T -n %{name}
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 CFLAGS=$RPM_OPT_FLAGS; export CFLAGS
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir}/%{name}}
 
 rm bin/empty.txt

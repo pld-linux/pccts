@@ -17,8 +17,8 @@ The Purdue Compiler-Construction Tools Set
 %package devel
 Summary:	Headers for pccts
 Summary(pl):	Pliki nag³ówkowe dla pccts
-Group:		Developement
-Group(pl):	Programowanie
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Requires:	%{name} = %{version}
 
 %description devel

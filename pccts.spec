@@ -3,7 +3,7 @@ Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
-Release:	7
+Release:	8
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
@@ -16,6 +16,7 @@ Patch0:		%{name}-antlr.patch
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
 Obsoletes:	pccts-devel
+Obsoletes:	pccts-antlr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,35 +50,6 @@ for Language Recognition) corresponde ao YACC e o dlg (DFA-based
 Lexical analyzer Generator) funciona como o LEX. Entretanto o PCCTS
 tem muitas características adicionais que tornam mais fácil seu uso em
 um conjunto maior de problemas de tradução.
-
-%package antlr
-Summary:	ANother Tool for Language Recognition
-Summary(pl):	Narzêdzie do rozpoznawania jêzyka programowania
-Group:		Development/Tools
-Requires:	%{name} = %{version}-%{release}
-
-%description antlr
-PCCTS is a set of public domain software tools designed to facilitate
-the implementation of compilers and other translation systems. These
-tools currently include antlr, dlg and support code. In many ways,
-PCCTS is similar to a highly integrated version of YACC [Joh78] and
-LEX [Les75]; where antlr (ANother Tool for Language Recognition)
-corresponds to YACC and dlg (DFA-based Lexical analyzer Generator)
-functions like LEX. However, PCCTS has many additional features which
-make it easier to use for a wider range of translation problems.
-This package contains antlr (ANother Tool for Language Recognition).
-
-%description antlr -l pl
-The Purdue Compiler-Construction Tools Set - zestaw narzêdzi public
-domain zaprojektowanych do implementowania kompilatorów i innych
-systemów t³umacz±cych. Narzêdzia te zawieraj± antlr, dlg i kod
-wspieraj±cy. Pod wieloma wzglêdami PCCTS jest podobny do wysoko
-zintegrowanych wersji YACC [Joh78] i LEX [Les75]; antlr (ANother Tool
-for Language Recognition) jest odpowiednikiem YACC, a dlg (DFA-based
-Lexical analyzer Generator) dzia³a jak LEX. PCCTS ma jednak wiele
-dodatkowych mo¿liwo¶ci, które u³atwiaj± u¿ywanie w szerszym zakresie
-problemów translacji.
-Ten pakiet zawiera antlr (narzêdzie do rozpoznawania jêzyka programowania).
 
 %prep
 %setup -q -n %{name} -a2
@@ -117,13 +89,6 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc *.txt *.pdf NOTES* RIGHTS history.ps README tutorial
-%attr(755,root,root) %{_bindir}/dlg
-%attr(755,root,root) %{_bindir}/genmk
-%attr(755,root,root) %{_bindir}/sor
+%attr(755,root,root) %{_bindir}/*
 %{_libdir}/%{name}
-%{_mandir}/man1/dlg*
-
-%files antlr
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/%{name}-antlr
-%{_mandir}/man1/%{name}-antlr*
+%{_mandir}/man?/*

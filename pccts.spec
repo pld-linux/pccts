@@ -3,7 +3,7 @@ Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
-Release:	6
+Release:	6.1
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
@@ -12,6 +12,7 @@ Source1:	http://www.polhode.com/pcctsbk2.pdf
 # Source1-md5:	ad0ce95ab5102d0ac89b1980fb5d2788
 Source2:	http://www.antlr.org/1.33/tutorial.zip
 # Source2-md5:	223c7b096d22c44fd1fbbbd84b392f01
+Patch0:		%{name}-antlr.patch
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
 Obsoletes:	pccts-devel
@@ -54,8 +55,6 @@ Summary:	ANother Tool for Language Recognition
 Summary(pl):	Narzêdzie do rozpoznawania jêzyka programowania
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	antlr
-Provides:	antlr
 
 %description antlr
 PCCTS is a set of public domain software tools designed to facilitate
@@ -82,6 +81,7 @@ Ten pakiet zawiera antlr (narzêdzie do rozpoznawania jêzyka programowania).
 
 %prep
 %setup -q -n %{name} -a2
+%patch0
 
 %build
 mv -f support/genmk/genmk.c support/genmk/genmk.c.org
@@ -100,7 +100,7 @@ rm -f bin/empty.txt
 
 install bin/* $RPM_BUILD_ROOT%{_bindir}
 install h/* $RPM_BUILD_ROOT%{_libdir}/%{name}/h
-install antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1/%{name}-antlr.1
 
 install dlg/dlg.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1} .
@@ -117,11 +117,13 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc *.txt *.pdf NOTES* RIGHTS history.ps README tutorial
-%attr(755,root,root) %{_bindir}/[!a]*
+%attr(755,root,root) %{_bindir}/dlg
+%attr(755,root,root) %{_bindir}/genmk
+%attr(755,root,root) %{_bindir}/sor
 %{_libdir}/%{name}
 %{_mandir}/man1/dlg*
 
 %files antlr
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/antlr
-%{_mandir}/man1/antlr*
+%attr(755,root,root) %{_bindir}/%{name}-antlr
+%{_mandir}/man1/%{name}-antlr*

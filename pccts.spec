@@ -1,11 +1,12 @@
 Summary:	The Purdue Compiler-Construction Tools Set
 Name:		pccts
 Version:	1.33MR22
-Release:	1
+Release:	5
 Group:		Utilities
 Group(pl):	Narzêdzia
 Copyright:	Public Domain
 Source0:	http://www.polhode.com/%{name}133mr.zip
+URL:		http://www.polhode.com/pccts.html
 BuildPrereq:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,12 +40,14 @@ CFLAGS=$RPM_OPT_FLAGS; export CFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir}/%{name},%{_mandir}/man1}
 
 rm bin/empty.txt
 
 install bin/* $RPM_BUILD_ROOT%{_bindir}
 install h/* $RPM_BUILD_ROOT%{_includedir}/%{name}
+install antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install dlg/dlg.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 gzip -9nf *.txt NOTES* RIGHTS history.ps README
 
@@ -55,6 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %doc *.gz
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)

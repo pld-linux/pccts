@@ -1,11 +1,13 @@
 Summary:	The Purdue Compiler-Construction Tools Set
 Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Name:		pccts
-Version:	1.33MR22
-Release:	7
+Version:	1.33MR33
+Release:	1
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
+Source1:	http://www.polhode.com/pcctsbk2.pdf
+Source2:	http://www.antlr.org/1.33/tutorial.zip
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -31,11 +33,10 @@ Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji programów
 korzystaj±cych z pccts.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name} -a2
 
 %build
-CFLAGS="%{rpmcflags}"; export CFLAGS
-%{__make}
+%{__make} CC="%{__cc}" COPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -47,16 +48,15 @@ install bin/* $RPM_BUILD_ROOT%{_bindir}
 install h/* $RPM_BUILD_ROOT%{_includedir}/%{name}
 install antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install dlg/dlg.1 $RPM_BUILD_ROOT%{_mandir}/man1
-
-gzip -9nf *.txt NOTES* RIGHTS history.ps README
+install %{SOURCE1} .
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc *.txt *.pdf NOTES* RIGHTS history.ps README tutorial
 %attr(755,root,root) %{_bindir}/*
-%doc *.gz
 %{_mandir}/man1/*
 
 %files devel

@@ -1,29 +1,37 @@
-# $Id: pccts.spec,v 1.1 2000-04-19 13:08:43 mkochano Exp $
-Summary:	-
-Summary(pl):	-
+Summary:	The Purdue Compiler-Construction Tools Set
 Name:		pccts
 Version:	1.33MR22
 Release:	1
-Group:		-
-Group(pl):	-
+Group:		Utilities
+Group(pl):	Narzêdzia
 Copyright:	Public Domain
 Source0:	http://www.polhode.com/%{name}133mr.zip
-#Patch0:		-
 BuildPrereq:	unzip
-#Requires:	-
-#Prereq:		-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+The Purdue Compiler-Construction Tools Set
 
-%description -l pl
+#%description -l pl
+
+%package devel
+Summary:	Headers for pccts
+Summary(pl):	Pliki nag³ówkowe dla pccts
+Group:		Developement
+Group(pl):	Programowanie
+Requires:	%{name} = %{version}
+
+%description devel
+Header files required to compile programs using pccts.
+
+%description -l pl devel
+Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji programów
+korzystaj±cych z pccts.
 
 %prep
+rm -rf %{name}
 unzip -qo %{SOURCE0}
 %setup -q -D -T -n %{name}
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
@@ -33,13 +41,14 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_includedir}/%{name}}
 
 rm bin/empty.txt
 
 install bin/* $RPM_BUILD_ROOT%{_bindir}
+install h/* $RPM_BUILD_ROOT%{_includedir}/%{name}
 
-gzip -9nf *.txt NOTES* RIGHTS history.ps README ChangeLog 
+gzip -9nf *.txt NOTES* RIGHTS history.ps README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,7 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %doc *.gz
 
-%changelog
-$Log: pccts.spec,v $
-Revision 1.1  2000-04-19 13:08:43  mkochano
-- Initial release. I'm still working on this spec.
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/%{name}

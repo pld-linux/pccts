@@ -36,7 +36,7 @@ unzip -qo %{SOURCE0}
 %build
 LDFLAGS="-s"; export LDFLAGS
 CFLAGS=$RPM_OPT_FLAGS; export CFLAGS
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -3,7 +3,7 @@ Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
-Release:	2
+Release:	3
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
@@ -24,8 +24,15 @@ functions like LEX. However, PCCTS has many additional features which
 make it easier to use for a wider range of translation problems.
 
 %description -l pl
-The Purdue Compiler-Construction Tools Set - zestaw narzêdzi do
-tworzenia kompilatorów.
+The Purdue Compiler-Construction Tools Set - zestaw narzêdzi public
+domain zaprojektowanych do implementowania kompilatorów i innych
+systemów t³umacz±cych. Narzêdzia te zawieraj± antlr, dlg i kod
+wspieraj±cy. Pod wieloma wzglêdami PCCTS jest podobny do wysoko
+zintegrowanych wersji YACC [Joh78] i LEX [Les75]; antlr (ANother Tool
+for Language Recognition) jest odpowiednikiem YACC, a dlg (DFA-based
+Lexical analyzer Generator) dzia³a jak LEX. PCCTS ma jednak wiele
+dodatkowych mo¿liwo¶ci, które u³atwiaj± u¿ywanie w szerszym zakresie
+problemów translacji.
 
 %description -l pt_BR
 O PCCTS é um conjunto de ferramentas de domínio público projetados

@@ -1,4 +1,3 @@
-
 Summary:	The Purdue Compiler-Construction Tools Set
 Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
@@ -87,12 +86,13 @@ Ten pakiet zawiera antlr (narzêdzie do rozpoznawania jêzyka programowania).
 %build
 mv -f support/genmk/genmk.c support/genmk/genmk.c.org
 sed -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c.org > support/genmk/genmk.c
-%{__make} CC="%{__cc}" COPT="%{rpmcflags} -DPCCTS_USE_STDARG"
+%{__make} \
+	CC="%{__cc}" \
+	COPT="%{rpmcflags} -DPCCTS_USE_STDARG"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
-install -d $RPM_BUILD_ROOT%{_libdir}/%{name}/{sorcerer,h}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/%{name}/{sorcerer,h}}
 
 ln -s %{_bindir} $RPM_BUILD_ROOT%{_libdir}/%{name}/bin
 

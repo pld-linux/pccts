@@ -1,0 +1,57 @@
+--- antlr/makefile~	2000-09-10 02:56:56.000000000 +0200
++++ antlr/makefile	2003-12-18 03:48:23.000000000 +0100
+@@ -166,7 +166,7 @@
+ #
+ CC=cc
+ COPT=-O
+-ANTLR=../bin/antlr
++ANTLR=../bin/pccts-antlr
+ DLG=../bin/dlg
+ OBJ_EXT=o
+ OUT_OBJ = -o
+@@ -178,9 +178,9 @@
+ OBJ=antlr.o scan.o err.o bits.o build.o fset2.o fset.o gen.o  \
+         globals.o hash.o lex.o main.o misc.o set.o pred.o egman.o mrhoist.o fcache.o
+ 
+-antlr : $(OBJ) $(SRC)
+-		$(CC) $(CFLAGS) -o antlr $(OBJ)
+-		mv antlr ../bin/.
++pccts-antlr : $(OBJ) $(SRC)
++		$(CC) $(CFLAGS) -o pccts-antlr $(OBJ)
++		mv pccts-antlr ../bin/.
+ 
+ # what files does PCCTS generate (both ANTLR and DLG)
+ PCCTS_GEN=antlr.c scan.c err.c tokens.h mode.h parser.dlg stdpccts.h remap.h
+--- dlg/makefile~	2000-09-10 02:57:05.000000000 +0200
++++ dlg/makefile	2003-12-18 03:49:59.000000000 +0100
+@@ -116,7 +116,7 @@
+ #
+ CC=cc
+ COPT=-O
+-ANTLR=../bin/antlr
++ANTLR=../bin/pccts-antlr
+ DLG=../bin/dlg
+ CFLAGS= $(COPT) -I. -I$(SET) -I$(PCCTS_H) -DUSER_ZZSYN -DZZLEXBUFSIZE=32000
+ OBJ_EXT=o
+--- sorcerer/makefile~	2001-04-13 02:43:59.000000000 +0200
++++ sorcerer/makefile	2003-12-18 03:51:29.000000000 +0100
+@@ -4,7 +4,7 @@
+ #
+ PCCTS=..
+ BIN = $(PCCTS)/bin
+-ANTLR = $(BIN)/antlr
++ANTLR = $(BIN)/pccts-antlr
+ DLG = $(BIN)/dlg
+ PCCTS_H = $(PCCTS)/h
+ SET = $(PCCTS)/support/set
+--- support/genmk/genmk.c~	2003-12-18 03:40:17.000000000 +0100
++++ support/genmk/genmk.c	2003-12-18 03:52:37.000000000 +0100
+@@ -502,7 +502,7 @@
+ 			 	DirectorySymbol, DirectorySymbol);
+ 	}
+ 	printf("BIN = $(PCCTS)%sbin\n", DirectorySymbol);
+-	printf("ANTLR = $(BIN)%santlr\n", DirectorySymbol);
++	printf("ANTLR = $(BIN)%spccts-antlr\n", DirectorySymbol);
+ 	printf("DLG = $(BIN)%sdlg\n", DirectorySymbol);
+ 	if (num_sors>0) printf("SOR = $(BIN)%ssor\n", DirectorySymbol);
+ 	printf("CFLAGS = -I. -I$(ANTLR_H)");

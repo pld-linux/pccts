@@ -3,7 +3,7 @@ Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
 Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
-Release:	4
+Release:	5
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
@@ -72,6 +72,11 @@ cp -r sorcerer/{h,lib} $RPM_BUILD_ROOT%{_libdir}/%{name}/sorcerer
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pre
+if [ -L %{_libdir}/%{name}/h ]; then
+	rm -f %{_libdir}/%{name}/h
+fi
 
 %files
 %defattr(644,root,root,755)

@@ -26,7 +26,7 @@ Requires:	%{name} = %{version}
 %description devel
 Header files required to compile programs using pccts.
 
-%description -l pl devel
+%description devel -l pl
 Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji programów
 korzystaj±cych z pccts.
 

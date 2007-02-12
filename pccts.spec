@@ -1,6 +1,6 @@
 Summary:	The Purdue Compiler-Construction Tools Set
-Summary(pl):	Zestaw narzêdzi do tworzenia kompilatorów
-Summary(pt_BR):	PCCTS - The Purdue Compiler Construction Tool Set
+Summary(pl.UTF-8):   Zestaw narzÄ™dzi do tworzenia kompilatorÃ³w
+Summary(pt_BR.UTF-8):   PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
 Release:	8
@@ -29,27 +29,27 @@ corresponds to YACC and dlg (DFA-based Lexical analyzer Generator)
 functions like LEX. However, PCCTS has many additional features which
 make it easier to use for a wider range of translation problems.
 
-%description -l pl
-The Purdue Compiler-Construction Tools Set - zestaw narzêdzi public
-domain zaprojektowanych do implementowania kompilatorów i innych
-systemów t³umacz±cych. Narzêdzia te zawieraj± antlr, dlg i kod
-wspieraj±cy. Pod wieloma wzglêdami PCCTS jest podobny do wysoko
+%description -l pl.UTF-8
+The Purdue Compiler-Construction Tools Set - zestaw narzÄ™dzi public
+domain zaprojektowanych do implementowania kompilatorÃ³w i innych
+systemÃ³w tÅ‚umaczÄ…cych. NarzÄ™dzia te zawierajÄ… antlr, dlg i kod
+wspierajÄ…cy. Pod wieloma wzglÄ™dami PCCTS jest podobny do wysoko
 zintegrowanych wersji YACC [Joh78] i LEX [Les75]; antlr (ANother Tool
 for Language Recognition) jest odpowiednikiem YACC, a dlg (DFA-based
-Lexical analyzer Generator) dzia³a jak LEX. PCCTS ma jednak wiele
-dodatkowych mo¿liwo¶ci, które u³atwiaj± u¿ywanie w szerszym zakresie
-problemów translacji.
+Lexical analyzer Generator) dziaÅ‚a jak LEX. PCCTS ma jednak wiele
+dodatkowych moÅ¼liwoÅ›ci, ktÃ³re uÅ‚atwiajÄ… uÅ¼ywanie w szerszym zakresie
+problemÃ³w translacji.
 
-%description -l pt_BR
-O PCCTS é um conjunto de ferramentas de domínio público projetados
-para facilitar a implementação de compiladores e outros sistemas de
-tradução. Estas ferramentas atualmente incluem: antlr, dlg e código de
-suporte. De muitas maneiras o PCCTS é similar à versão altamente
+%description -l pt_BR.UTF-8
+O PCCTS Ã© um conjunto de ferramentas de domÃ­nio pÃºblico projetados
+para facilitar a implementaÃ§Ã£o de compiladores e outros sistemas de
+traduÃ§Ã£o. Estas ferramentas atualmente incluem: antlr, dlg e cÃ³digo de
+suporte. De muitas maneiras o PCCTS Ã© similar Ã  versÃ£o altamente
 integrada do YACC [Joh78] e LEX [Les75]; onde o antlr (ANother Tool
 for Language Recognition) corresponde ao YACC e o dlg (DFA-based
 Lexical analyzer Generator) funciona como o LEX. Entretanto o PCCTS
-tem muitas características adicionais que tornam mais fácil seu uso em
-um conjunto maior de problemas de tradução.
+tem muitas caracterÃ­sticas adicionais que tornam mais fÃ¡cil seu uso em
+um conjunto maior de problemas de traduÃ§Ã£o.
 
 %prep
 %setup -q -n %{name} -a2

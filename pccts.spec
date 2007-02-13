@@ -1,6 +1,6 @@
 Summary:	The Purdue Compiler-Construction Tools Set
-Summary(pl.UTF-8):   Zestaw narzędzi do tworzenia kompilatorów
-Summary(pt_BR.UTF-8):   PCCTS - The Purdue Compiler Construction Tool Set
+Summary(pl.UTF-8):	Zestaw narzędzi do tworzenia kompilatorów
+Summary(pt_BR.UTF-8):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
 Release:	8

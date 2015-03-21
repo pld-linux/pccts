@@ -8,15 +8,15 @@ License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
 # Source0-md5:	fd70972b0a6aa2d3cf8b5c66d26d229d
-Source1:	http://www.polhode.com/pcctsbk2.pdf
+Source1:	http://www.polhode.com/%{name}bk2.pdf
 # Source1-md5:	ad0ce95ab5102d0ac89b1980fb5d2788
 Source2:	http://www.antlr.org/1.33/tutorial.zip
 # Source2-md5:	223c7b096d22c44fd1fbbbd84b392f01
 Patch0:		%{name}-antlr.patch
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
-Obsoletes:	pccts-devel
 Obsoletes:	pccts-antlr
+Obsoletes:	pccts-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,9 +55,12 @@ um conjunto maior de problemas de tradução.
 %setup -q -n %{name} -a2
 %patch0
 
+sed -i -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c
+rm bin/empty.txt
+
+cp -p %{SOURCE1} .
+
 %build
-mv -f support/genmk/genmk.c support/genmk/genmk.c.org
-sed -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c.org > support/genmk/genmk.c
 %{__make} \
 	CC="%{__cc}" \
 	COPT="%{rpmcflags} -DPCCTS_USE_STDARG"
@@ -67,28 +70,30 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_libdir}/%{name}/{sorcerer,h}}
 
 ln -s %{_bindir} $RPM_BUILD_ROOT%{_libdir}/%{name}/bin
-
-rm -f bin/empty.txt
-
-install bin/* $RPM_BUILD_ROOT%{_bindir}
-install h/* $RPM_BUILD_ROOT%{_libdir}/%{name}/h
-install antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1/%{name}-antlr.1
-
-install dlg/dlg.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install %{SOURCE1} .
+install -p bin/* $RPM_BUILD_ROOT%{_bindir}
+cp -p h/* $RPM_BUILD_ROOT%{_libdir}/%{name}/h
+cp -p antlr/antlr.1 $RPM_BUILD_ROOT%{_mandir}/man1/%{name}-antlr.1
+cp -p dlg/dlg.1 $RPM_BUILD_ROOT%{_mandir}/man1
 cp -r sorcerer/{h,lib} $RPM_BUILD_ROOT%{_libdir}/%{name}/sorcerer
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
+%pretrans
 if [ -L %{_libdir}/%{name}/h ]; then
-	rm -f %{_libdir}/%{name}/h
+	rm %{_libdir}/%{name}/h
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc *.txt *.pdf NOTES* RIGHTS history.ps README tutorial
-%attr(755,root,root) %{_bindir}/*
-%{_libdir}/%{name}
-%{_mandir}/man?/*
+%attr(755,root,root) %{_bindir}/dlg
+%attr(755,root,root) %{_bindir}/genmk
+%attr(755,root,root) %{_bindir}/pccts-antlr
+%attr(755,root,root) %{_bindir}/sor
+%{_mandir}/man1/dlg.1*
+%{_mandir}/man1/pccts-antlr.1*
+%dir %{_libdir}/%{name}
+%{_libdir}/%{name}/bin
+%{_libdir}/%{name}/h
+%{_libdir}/%{name}/sorcerer

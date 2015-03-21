@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Zestaw narzędzi do tworzenia kompilatorów
 Summary(pt_BR.UTF-8):	PCCTS - The Purdue Compiler Construction Tool Set
 Name:		pccts
 Version:	1.33MR33
-Release:	9
+Release:	10
 License:	Public Domain
 Group:		Development/Tools
 Source0:	http://www.polhode.com/%{name}133mr.zip
@@ -13,6 +13,7 @@ Source1:	http://www.polhode.com/%{name}bk2.pdf
 Source2:	http://www.antlr.org/1.33/tutorial.zip
 # Source2-md5:	223c7b096d22c44fd1fbbbd84b392f01
 Patch0:		%{name}-antlr.patch
+Patch1:		format-security.patch
 URL:		http://www.polhode.com/pccts.html
 BuildRequires:	unzip
 Obsoletes:	pccts-antlr
@@ -54,6 +55,7 @@ um conjunto maior de problemas de tradução.
 %prep
 %setup -q -n %{name} -a2
 %patch0
+%patch1 -p1
 
 sed -i -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c
 rm bin/empty.txt

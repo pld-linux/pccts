@@ -1,0 +1,65 @@
+--- pccts/antlr/lex.c~	2001-08-09 14:50:33.000000000 +0300
++++ pccts/antlr/lex.c	2015-03-21 17:17:22.568752584 +0200
+@@ -706,7 +706,7 @@
+ /* MR26 */			if (! (isalpha(*t) || isdigit(*t) || *t == '_' || *t == '$')) break;
+ /* MR26 */		}
+ /* MR26 */	}
+-/* MR26 */	fprintf(output,strBetween(pSymbol, t, pSeparator));
++/* MR26 */	fputs(strBetween(pSymbol, t, pSeparator),output);
+ 
+     *q = p;
+     return (*pSeparator  == 0);
+@@ -771,7 +771,7 @@
+ 				  &pValue,
+ 				  &pSeparator,
+ 				  &nest);
+-	fprintf(f,strBetween(pDataType, pSymbol, pSeparator));
++	fputs(strBetween(pDataType, pSymbol, pSeparator), f);
+ }
+ 
+ /* check to see if string e is a word in string s */
+@@ -852,9 +852,9 @@
+ 					  &pSeparator,
+ 					  &nest);
+ 		fprintf(f,"\t");
+-		fprintf(f,strBetween(pDataType, pSymbol, pSeparator));
++		fputs(strBetween(pDataType, pSymbol, pSeparator), f);
+ 		fprintf(f," ");
+-		fprintf(f,strBetween(pSymbol, pEqualSign, pSeparator));
++		fputs(strBetween(pSymbol, pEqualSign, pSeparator), f);
+ 		fprintf(f,";\n");
+     }
+ 	fprintf(f,"};\n");
+--- pccts/antlr/fset2.c~	2001-08-28 00:30:55.000000000 +0300
++++ pccts/antlr/fset2.c	2015-03-21 20:40:47.213771506 +0200
+@@ -2210,7 +2210,7 @@
+       if (p->ntype != nToken) continue;
+       tn=(TokNode *)p;
+       if (depth != 0) fprintf(stdout," ");
+-      fprintf(stdout,TerminalString(tn->token));
++      fputs(TerminalString(tn->token), stdout);
+       depth++;
+       if (! MR_AmbAidMultiple) {
+         if (set_nil(tn->tset)) {
+--- pccts/antlr/gen.c~	2002-03-04 04:34:22.000000000 +0200
++++ pccts/antlr/gen.c	2015-03-21 20:42:27.175611201 +0200
+@@ -3866,7 +3866,7 @@
+ /* MR10 */    _gen(" *  ");
+ /* MR10 */    for (i=0 ; i < Save_argc ; i++) {
+ /* MR10 */      _gen(" ");
+-/* MR10 */      _gen(Save_argv[i]);
++/* MR10 */      _gen1("%s", Save_argv[i]);
+ /* MR10 */    };
+ 	_gen("\n");
+ 	_gen(" *\n");
+--- pccts/sorcerer/main.c~	2001-06-03 20:37:29.000000000 +0300
++++ pccts/sorcerer/main.c	2015-03-21 20:45:02.877002088 +0200
+@@ -1035,7 +1035,7 @@
+     id = p;                    /* here is where id is */
+     p = s;
+     while ( p!=id ) {fputc(*p, f); p++;} /* dump until just before variable */
+-	fprintf(f, prefix);
++	fputs(prefix,f);
+     while ( isspace(*p) ) p++;
+     while ( *p!='\0' )                   /* dump rest */
+     {

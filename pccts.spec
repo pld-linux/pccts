@@ -54,8 +54,8 @@ um conjunto maior de problemas de tradução.
 
 %prep
 %setup -q -n %{name} -a2
-%patch0
-%patch1 -p1
+%patch -P0
+%patch -P1 -p1
 
 sed -i -e 's#/usr/local/pccts#%{_libdir}/%{name}#g' support/genmk/genmk.c
 rm bin/empty.txt
